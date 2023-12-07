@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:focal_agent_assigment/feature/employee_list/view/screen/employee_list_screen.dart';
 import './DI/app_container.dart' as dependancy_injection;
 
@@ -21,6 +22,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const EmployeeListScreen(),
+      builder: EasyLoading.init(),
     );
   }
 }

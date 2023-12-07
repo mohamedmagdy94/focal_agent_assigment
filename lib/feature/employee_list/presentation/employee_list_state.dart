@@ -18,19 +18,15 @@ class EmployeeListShowCategoriesState extends EmployeeListState {
 }
 
 class EmployeListLoadingState extends EmployeeListState {
-  final bool isLoading;
-  EmployeListLoadingState(this.isLoading);
-
   @override
-  List<Object?> get props => [isLoading];
+  List<Object?> get props => [];
 }
 
 class EmployeListShowDataState extends EmployeeListState {
-  final List<Employee> employeesList;
-  EmployeListShowDataState(this.employeesList);
+  EmployeListShowDataState();
 
   @override
-  List<Object?> get props => [employeesList];
+  List<Object?> get props => [];
 }
 
 class EmployeListFailureState extends EmployeeListState {
