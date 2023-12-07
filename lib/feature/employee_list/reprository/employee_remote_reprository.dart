@@ -10,11 +10,16 @@ class EmployeeRemoteReprository implements EmployeeReprository {
   @override
   Future<List<Employee>> getAll(bool forceRefresh) async {
     try {
-      final String responseString = await rootBundle
-          .loadString('assets/mock_response/employee_list_mock_response.json');
-      final employeeResponse = employeeResponseFromJson(responseString);
-      return Future.delayed(
-          const Duration(seconds: 5), () => employeeResponse.data);
+      if (!forceRefresh && !_employess.isEmpty) {
+        return Future.delayed(const Duration(seconds: 5), () => _employess);
+      } else {
+        final String responseString = await rootBundle.loadString(
+            'assets/mock_response/employee_list_mock_response.json');
+        final employeeResponse = employeeResponseFromJson(responseString);
+        _employess = employeeResponse.data;
+        return Future.delayed(
+            const Duration(seconds: 5), () => employeeResponse.data);
+      }
     } catch (e) {
       return Future.error(EmployeeListException('Bad Response'));
     }
