@@ -3,6 +3,20 @@ import 'package:focal_agent_assigment/feature/employee_list/entity/employee.dart
 
 abstract class EmployeeListState extends Equatable {}
 
+class EmployeListInitialState extends EmployeeListState {
+  @override
+  List<Object?> get props => [];
+}
+
+class EmployeeListShowCategoriesState extends EmployeeListState {
+  final List<String> categories;
+
+  EmployeeListShowCategoriesState(this.categories);
+
+  @override
+  List<Object?> get props => [categories];
+}
+
 class EmployeListLoadingState extends EmployeeListState {
   final bool isLoading;
   EmployeListLoadingState(this.isLoading);

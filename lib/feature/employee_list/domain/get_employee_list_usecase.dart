@@ -2,20 +2,21 @@ import 'package:focal_agent_assigment/feature/employee_list/entity/employee.dart
 import 'package:focal_agent_assigment/feature/employee_list/entity/employee_list_exception.dart';
 import 'package:focal_agent_assigment/feature/employee_list/reprository/employee_reprository.dart';
 
-abstract class GetEmployeeListUseContract {
-  Future<List<Employee>> getEmployeeWithTyoe(String type, bool isUpdated);
+abstract class GetEmployeeListUsecaseContract {
+  Future<List<Employee>> getEmployeeWithTyoe(
+      String type, bool shouldGetUpdatedData);
 }
 
-class GetEmployeeListUse implements GetEmployeeListUseContract {
+class GetEmployeeListUsecase implements GetEmployeeListUsecaseContract {
   EmployeeReprository employeeReprository;
 
-  GetEmployeeListUse(this.employeeReprository);
+  GetEmployeeListUsecase(this.employeeReprository);
 
   @override
   Future<List<Employee>> getEmployeeWithTyoe(
-      String type, bool isUpdated) async {
+      String type, bool shouldGetUpdatedData) async {
     try {
-      final employees = await employeeReprository.getAll(isUpdated);
+      final employees = await employeeReprository.getAll(shouldGetUpdatedData);
       final employeesFiltered =
           employees.where((element) => element.category == type).toList();
       return employeesFiltered;
