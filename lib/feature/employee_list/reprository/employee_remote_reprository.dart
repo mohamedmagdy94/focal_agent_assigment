@@ -18,7 +18,7 @@ class EmployeeRemoteReprository implements EmployeeReprository {
         final employeeResponse = employeeResponseFromJson(responseString);
         _employess = employeeResponse.data;
         return Future.delayed(
-            const Duration(seconds: 5), () => employeeResponse.data);
+            const Duration(seconds: 3), () => employeeResponse.data);
       }
     } catch (e) {
       return Future.error(EmployeeListException('Bad Response'));

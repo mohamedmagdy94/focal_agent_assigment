@@ -19,6 +19,7 @@ class EmployeeListBloc extends Bloc<EmployeeListEvent, EmployeeListState> {
   _registerHandlers() {
     _registerDataRequestHandler();
     _registerCategorySelectHandler();
+    _registerUpdateDataHandler();
   }
 
   _registerDataRequestHandler() {
@@ -42,10 +43,32 @@ class EmployeeListBloc extends Bloc<EmployeeListEvent, EmployeeListState> {
   _registerCategorySelectHandler() {
     on<EmployeeListCetegorySelectEvent>((event, emit) async {
       _selectedCategory = event.selectedCategoryIndex;
+      employees = [];
+      emit(EmployeListShowDataState());
       emit(EmployeListLoadingState());
       try {
         final employesResult = await _getEmployeeListUsecase
             .getEmployeeWithTyoe(_categories[_selectedCategory], false);
+        employees = employesResult;
+        emit(EmployeListShowDataState());
+      } catch (e) {
+        if (e is EmployeeListException) {
+          emit(EmployeListFailureState(e.cause));
+        } else {
+          emit(EmployeListFailureState('General Error'));
+        }
+      }
+    });
+  }
+
+  _registerUpdateDataHandler() {
+    on<EmployeeListUpdateDataEvent>((event, emit) async {
+      employees = [];
+      emit(EmployeListShowDataState());
+      emit(EmployeListLoadingState());
+      try {
+        final employesResult = await _getEmployeeListUsecase
+            .getEmployeeWithTyoe(_categories[_selectedCategory], true);
         employees = employesResult;
         emit(EmployeListShowDataState());
       } catch (e) {

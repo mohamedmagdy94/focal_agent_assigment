@@ -51,10 +51,16 @@ class EmployeeListScreen extends StatelessWidget {
                               .add(EmployeeListCetegorySelectEvent(index)),
                     ),
                     Expanded(
-                      child: EmployeeList(
-                          employees:
-                              BlocProvider.of<EmployeeListBloc>(builderContext)
-                                  .employees),
+                      child: RefreshIndicator(
+                        child: EmployeeList(
+                            employees: BlocProvider.of<EmployeeListBloc>(
+                                    builderContext)
+                                .employees),
+                        onRefresh: () async {
+                          BlocProvider.of<EmployeeListBloc>(builderContext)
+                              .add(EmployeeListUpdateDataEvent());
+                        },
+                      ),
                     )
                   ],
                 ),
