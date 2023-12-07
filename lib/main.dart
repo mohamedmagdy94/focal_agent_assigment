@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:focal_agent_assigment/feature/employee_list/view/screen/employee_list_screen.dart';
+import './DI/app_container.dart' as dependancy_injection;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dependancy_injection.init();
   runApp(const MyApp());
 }
 
