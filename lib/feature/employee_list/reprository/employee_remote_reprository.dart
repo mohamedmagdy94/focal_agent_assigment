@@ -10,7 +10,7 @@ class EmployeeRemoteReprository implements EmployeeReprository {
   @override
   Future<List<Employee>> getAll(bool forceRefresh) async {
     try {
-      if (!forceRefresh && !_employess.isEmpty) {
+      if (!forceRefresh && _employess.isNotEmpty) {
         return Future.sync(() => _employess);
       } else {
         final String responseString = await rootBundle.loadString(
