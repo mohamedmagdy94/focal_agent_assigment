@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:focal_agent_assigment/DI/service_locator.dart';
-import 'package:focal_agent_assigment/feature/employee_list/entity/employee.dart';
 import 'package:focal_agent_assigment/feature/employee_list/presentation/employee_list_bloc.dart';
 import 'package:focal_agent_assigment/feature/employee_list/presentation/employee_list_event.dart';
 import 'package:focal_agent_assigment/feature/employee_list/presentation/employee_list_state.dart';

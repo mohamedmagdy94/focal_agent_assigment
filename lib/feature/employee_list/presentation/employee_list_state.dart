@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:focal_agent_assigment/feature/employee_list/entity/employee.dart';
 
 abstract class EmployeeListState extends Equatable {}
 
