@@ -9,9 +9,9 @@ class EmployeeRemoteReprository implements EmployeeReprository {
 
   @override
   Future<List<Employee>> getAll(bool forceRefresh) async {
-    final String responseString =
-        await rootBundle.loadString('assets/sample.json');
     try {
+      final String responseString =
+          await rootBundle.loadString('assets/sample.json');
       final employeeResponse = employeeResponseFromJson(responseString);
       return Future.delayed(
           const Duration(seconds: 5), () => employeeResponse.data);
