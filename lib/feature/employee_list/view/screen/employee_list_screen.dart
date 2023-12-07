@@ -37,14 +37,19 @@ class EmployeeListScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   children: [
-                    const TabBar(tabs: [
-                      Tab(
-                        text: 'HR',
-                      ),
-                      Tab(
-                        text: 'IT',
-                      )
-                    ]),
+                    TabBar(
+                      tabs: const [
+                        Tab(
+                          text: 'HR',
+                        ),
+                        Tab(
+                          text: 'IT',
+                        )
+                      ],
+                      onTap: (index) =>
+                          BlocProvider.of<EmployeeListBloc>(builderContext)
+                              .add(EmployeeListCetegorySelectEvent(index)),
+                    ),
                     Expanded(
                       child: EmployeeList(
                           employees:

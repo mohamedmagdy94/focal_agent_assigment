@@ -11,7 +11,7 @@ class EmployeeRemoteReprository implements EmployeeReprository {
   Future<List<Employee>> getAll(bool forceRefresh) async {
     try {
       if (!forceRefresh && !_employess.isEmpty) {
-        return Future.delayed(const Duration(seconds: 5), () => _employess);
+        return Future.sync(() => _employess);
       } else {
         final String responseString = await rootBundle.loadString(
             'assets/mock_response/employee_list_mock_response.json');
